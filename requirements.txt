@@ -1,0 +1,25 @@
+# Core dependencies (used in all days)
+numpy
+pandas
+scikit-learn
+networkx
+matplotlib
+python-dotenv
+neo4j
+pymupdf
+
+# Day 3 Graph ML (Link Prediction)
+sentence-transformers
+
+# Day 4 GNN Modeling (GCN/GraphSAGE)
+torch --extra-index-url https://download.pytorch.org/whl/cpu
+torchvision --extra-index-url https://download.pytorch.org/whl/cpu
+torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+torch-geometric
+
+# Day 5 RAG Application
+streamlit
+streamlit-agraph  # For interactive graph visualization in app
+langchain
+langchain-community
+langchain-core
