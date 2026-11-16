@@ -75,11 +75,10 @@ def run_experiment(model_type):
     for epoch in range(1, 101):
         model.train()
         optimizer.zero_grad()
-        z = model.encode(data_idx.x, data_idx.val_pos_edge_index) # Use val edges for message passing during train
+        # Message passing uses training edges only, so validation/test edges stay unseen
+        z = model.encode(data_idx.x, data_idx.train_pos_edge_index)
         
-        # Binary Cross Entropy Loss on Positive and Negative samples
-        logits = model.decode(z, data_idx.train_pos_edge_index, data_idx.train_pos_edge_index) # Placeholder for real sample logic
-        # In actual PyG logic, we'd sample negatives every epoch
+        # Binary cross-entropy on positive training edges and freshly sampled negatives (new negatives every epoch)
         neg_edge_index = negative_sampling(data_idx.train_pos_edge_index, num_nodes=data_idx.num_nodes)
         
         logits = model.decode(z, data_idx.train_pos_edge_index, neg_edge_index)
